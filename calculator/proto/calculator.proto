@@ -4,6 +4,7 @@ option go_package = "github.com/Clement-Jean/grpc-go-course/calculator/proto";
 
 import "prime.proto";
 import "avg.proto";
+import "max.proto";
 
 message SumRequest {
     int32 num1 = 1;
@@ -17,5 +18,6 @@ message SumResponse {
 service CalculatorService {
     rpc Sum (SumRequest) returns (SumResponse);
     rpc Prime (PrimeRequest) returns (stream PrimeResponse);
-    rpc Avg (stream AvgRequest) returns (AvgResponse); 
+    rpc Avg (stream AvgRequest) returns (AvgResponse);
+    rpc Max(stream MaxRequest) returns (stream MaxResponse); 
 }
