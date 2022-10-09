@@ -22,5 +22,7 @@ func main() {
 	// doAvg(c)
 	// doMax(c)
 	// doSqrt(c, -10)
-	createBlog(c)
+	id := createBlog(c)
+	ReadBlog(c, id)
+	ReadBlog(c, "IdNotExists") 
 }
