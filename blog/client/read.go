@@ -7,7 +7,7 @@ import (
 	pb "github.com/Clement-Jean/grpc-go-course/blog/proto"
 )
 
-func ReadBlog(c pb.BlogServiceClient, id string) *pb.Blog {
+func readBlog(c pb.BlogServiceClient, id string) *pb.Blog {
 	log.Println("ReadBlog was invoked")
 	req := &pb.BlogId{Id: id}
 	res, err := c.ReadBlog(context.Background(), req)

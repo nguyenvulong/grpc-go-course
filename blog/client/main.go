@@ -23,7 +23,7 @@ func main() {
 	// doMax(c)
 	// doSqrt(c, -10)
 	id := createBlog(c)
-	ReadBlog(c, id)
-	// ReadBlog(c, "IdNotExists")
+	readBlog(c, id)
+	// readBlog(c, "IdNotExists")
 	updateBlog(c, id)
 }
