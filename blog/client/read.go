@@ -15,6 +15,6 @@ func ReadBlog(c pb.BlogServiceClient, id string) *pb.Blog {
 	if err != nil {
 		log.Printf("Error while reading %v\n", err)
 	}
-	log.Printf("Log was read %v\n", res)
+	log.Printf("Blog was read %v\n", res)
 	return res
 }

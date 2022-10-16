@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 type BlogServiceClient interface {
 	CreateBlog(ctx context.Context, in *Blog, opts ...grpc.CallOption) (*BlogId, error)
 	ReadBlog(ctx context.Context, in *BlogId, opts ...grpc.CallOption) (*Blog, error)
-	UpdateBlog(ctx context.Context, in *BlogId, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateBlog(ctx context.Context, in *Blog, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteBlog(ctx context.Context, in *BlogId, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListBlog(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (BlogService_ListBlogClient, error)
 }
@@ -56,7 +56,7 @@ func (c *blogServiceClient) ReadBlog(ctx context.Context, in *BlogId, opts ...gr
 	return out, nil
 }
 
-func (c *blogServiceClient) UpdateBlog(ctx context.Context, in *BlogId, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *blogServiceClient) UpdateBlog(ctx context.Context, in *Blog, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/blog.BlogService/UpdateBlog", in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (x *blogServiceListBlogClient) Recv() (*Blog, error) {
 type BlogServiceServer interface {
 	CreateBlog(context.Context, *Blog) (*BlogId, error)
 	ReadBlog(context.Context, *BlogId) (*Blog, error)
-	UpdateBlog(context.Context, *BlogId) (*emptypb.Empty, error)
+	UpdateBlog(context.Context, *Blog) (*emptypb.Empty, error)
 	DeleteBlog(context.Context, *BlogId) (*emptypb.Empty, error)
 	ListBlog(*emptypb.Empty, BlogService_ListBlogServer) error
 	mustEmbedUnimplementedBlogServiceServer()
@@ -128,7 +128,7 @@ func (UnimplementedBlogServiceServer) CreateBlog(context.Context, *Blog) (*BlogI
 func (UnimplementedBlogServiceServer) ReadBlog(context.Context, *BlogId) (*Blog, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadBlog not implemented")
 }
-func (UnimplementedBlogServiceServer) UpdateBlog(context.Context, *BlogId) (*emptypb.Empty, error) {
+func (UnimplementedBlogServiceServer) UpdateBlog(context.Context, *Blog) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBlog not implemented")
 }
 func (UnimplementedBlogServiceServer) DeleteBlog(context.Context, *BlogId) (*emptypb.Empty, error) {
@@ -187,7 +187,7 @@ func _BlogService_ReadBlog_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _BlogService_UpdateBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlogId)
+	in := new(Blog)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -199,7 +199,7 @@ func _BlogService_UpdateBlog_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/blog.BlogService/UpdateBlog",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BlogServiceServer).UpdateBlog(ctx, req.(*BlogId))
+		return srv.(BlogServiceServer).UpdateBlog(ctx, req.(*Blog))
 	}
 	return interceptor(ctx, in, info, handler)
 }

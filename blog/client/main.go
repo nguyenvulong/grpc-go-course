@@ -24,5 +24,6 @@ func main() {
 	// doSqrt(c, -10)
 	id := createBlog(c)
 	ReadBlog(c, id)
-	ReadBlog(c, "IdNotExists") 
+	// ReadBlog(c, "IdNotExists")
+	updateBlog(c, id)
 }
