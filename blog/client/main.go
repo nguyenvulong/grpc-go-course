@@ -17,13 +17,12 @@ func main() {
 	defer conn.Close()
 
 	c := pb.NewBlogServiceClient(conn)
-	// doSum(c)
-	// doPrime(c)
-	// doAvg(c)
-	// doMax(c)
-	// doSqrt(c, -10)
-	id := createBlog(c)
-	readBlog(c, id)
+
+	// id := createBlog(c)
+	id := "6342d4caa889ac73d6c7b3d7"
+	// readBlog(c, id)
 	// readBlog(c, "IdNotExists")
-	updateBlog(c, id)
+	// updateBlog(c, id)
+	listBlog(c)
+	// deleteBlog(c, id)
 }
